@@ -35,7 +35,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -44,22 +53,83 @@ import com.syedtechsolutions.composetutorials.ui.theme.ComposeTutorialsTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val fontFamily = FontFamily(
+            Font(R.font.lexend_thin, FontWeight.Thin),
+            Font(R.font.lexend_light, FontWeight.Light)
+
+        )
         setContent {
-            val painter = painterResource(id = R.drawable.transparent_avatar)
-            val description = "Composer's Avatar!"
-            val title = "IMFreelancer"
-            Box(modifier = Modifier
-                .fillMaxWidth(.5f)
-                .padding(16.dp)) {
-                ImageCard(
-                    painter = painter,
-                    contentDescription = description,
-                    title = title,
-                    modifier = Modifier.background(Color.DarkGray))
-            }
+
+            Box( modifier = Modifier
+                .fillMaxSize()
+                .background(Color(0xFF101010)))
+                {
+                Text(
+                    text = buildAnnotatedString {
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color.Gray,
+                                fontSize = 50.sp
+                            )
+                        ) {
+                            append("J")
+                        }
+                        append("etpackCompose ")
+
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color.Gray,
+                                fontSize = 50.sp
+                            )
+                        ) {
+                            append("T")
+                        }
+                        append("ext")
+
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color.Gray,
+                                fontSize = 50.sp
+                            )
+                        ) {
+                            append("S")
+                        }
+                        append("tyle")
+                    },
+                    color = Color.White,
+                    fontSize = 30.sp,
+                    fontFamily = fontFamily,
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    textAlign = TextAlign.Center,
+                    textDecoration = TextDecoration.Underline
+                )
+                }
+
         }
     }
 }
+
+
+
+
+
+/** ImageCard Tuts **/
+
+/** setContent {
+    val painter = painterResource(id = R.drawable.transparent_avatar)
+    val description = "Composer's Avatar!"
+    val title = "IMFreelancer"
+    Box(modifier = Modifier
+        .fillMaxWidth(.5f)
+        .padding(16.dp)) {
+        ImageCard(
+            painter = painter,
+            contentDescription = description,
+            title = title,
+            modifier = Modifier.background(Color.DarkGray))
+    }
 
 @Composable
 fun ImageCard (
@@ -109,3 +179,5 @@ fun ImageCard (
 
      }
 }
+
+**/
