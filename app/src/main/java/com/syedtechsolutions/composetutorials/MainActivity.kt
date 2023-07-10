@@ -28,6 +28,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
@@ -49,70 +52,123 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.syedtechsolutions.composetutorials.ui.theme.ComposeTutorialsTheme
+import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val fontFamily = FontFamily(
-            Font(R.font.lexend_thin, FontWeight.Thin),
-            Font(R.font.lexend_light, FontWeight.Light)
 
-        )
         setContent {
 
-            Box( modifier = Modifier
-                .fillMaxSize()
-                .background(Color(0xFF101010)))
-                {
-                Text(
-                    text = buildAnnotatedString {
-                        withStyle(
-                            style = SpanStyle(
-                                color = Color.Gray,
-                                fontSize = 50.sp
-                            )
-                        ) {
-                            append("J")
-                        }
-                        append("etpackCompose ")
-
-                        withStyle(
-                            style = SpanStyle(
-                                color = Color.Gray,
-                                fontSize = 50.sp
-                            )
-                        ) {
-                            append("T")
-                        }
-                        append("ext")
-
-                        withStyle(
-                            style = SpanStyle(
-                                color = Color.Gray,
-                                fontSize = 50.sp
-                            )
-                        ) {
-                            append("S")
-                        }
-                        append("tyle")
-                    },
-                    color = Color.White,
-                    fontSize = 30.sp,
-                    fontFamily = fontFamily,
-                    fontWeight = FontWeight.Bold,
-                    fontStyle = FontStyle.Italic,
-                    textAlign = TextAlign.Center,
-                    textDecoration = TextDecoration.Underline
-                )
+            Column (Modifier.fillMaxSize()) {
+                val  color = remember {
+                    mutableStateOf(Color.Gray)
                 }
 
+            ColorBox(
+                Modifier.weight(1f).fillMaxSize()
+            ) {
+                color.value = it
+            }
+
+            Box (modifier = Modifier
+                .background(color.value)
+                .weight(1f)
+                .fillMaxSize()
+            )
         }
     }
 }
 
+/** State Compose Box **/
+
+@Composable
+fun ColorBox(modifier: Modifier = Modifier,
+             updatecolor: (Color) -> Unit) {
+
+    Box (modifier = modifier
+        .background(Color.Red)
+        .clickable {
+            updatecolor(
+                Color(
+                    Random.nextFloat(),
+                    Random.nextFloat(),
+                    Random.nextFloat(),
+                    1f
+                )
+            )
+
+        }
+    )
+}
+}
+
+/** State Compose Box **/
 
 
+
+/** Text Style Tuts **/
+/**
+
+
+  val fontFamily = FontFamily(
+              Font(R.font.lexend_thin, FontWeight.Thin),
+              Font(R.font.lexend_light, FontWeight.Light)
+  )
+
+setContent {
+
+Box( modifier = Modifier
+.fillMaxSize()
+.background(Color(0xFF101010)))
+{
+Text(
+text = buildAnnotatedString {
+withStyle(
+style = SpanStyle(
+color = Color.Gray,
+fontSize = 50.sp
+)
+) {
+append("J")
+}
+append("etpackCompose ")
+
+withStyle(
+style = SpanStyle(
+color = Color.Gray,
+fontSize = 50.sp
+)
+) {
+append("T")
+}
+append("ext")
+
+withStyle(
+style = SpanStyle(
+color = Color.Gray,
+fontSize = 50.sp
+)
+) {
+append("S")
+}
+append("tyle")
+},
+color = Color.White,
+fontSize = 30.sp,
+fontFamily = fontFamily,
+fontWeight = FontWeight.Bold,
+fontStyle = FontStyle.Italic,
+textAlign = TextAlign.Center,
+textDecoration = TextDecoration.Underline
+)
+}
+
+}
+
+ **/
+/** Text Style Tuts **/
 
 
 /** ImageCard Tuts **/
@@ -181,3 +237,4 @@ fun ImageCard (
 }
 
 **/
+/** ImageCard Tuts **/
