@@ -1,5 +1,6 @@
 package com.syedtechsolutions.composetutorials
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -54,11 +55,14 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val scaffoldState = rememberScaffoldState()
+
+            val snackbarHostState = remember { SnackbarHostState() }
             var textFiledState by remember {
                 mutableStateOf("")
             }
@@ -66,7 +70,8 @@ class MainActivity : ComponentActivity() {
 
             Scaffold (
                 modifier = Modifier.fillMaxSize(),
-                scaffoldState = scaffoldState
+                snackbarHost = { SnackbarHost(snackbarHostState) }
+//                scaffoldState = scaffoldState
             ) {
                 Column (horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center,
@@ -84,7 +89,7 @@ class MainActivity : ComponentActivity() {
                             textFiledState = it
                         },
                             singleLine = true,
-                            modifier = Modifier.fillMaxSize()
+                            modifier = Modifier.fillMaxWidth()
                     )
                     
                     Spacer(modifier = Modifier.height(16.dp))
@@ -92,10 +97,10 @@ class MainActivity : ComponentActivity() {
                     Button(onClick = {
 
                         scope.launch {
-                            scaffoldState.SnackbarHostState.showSnackbar("Hello $textFiledState", duration = SnackbarDuration.Long)
+                            snackbarHostState.showSnackbar("Hello $textFiledState", duration = SnackbarDuration.Long)
                         }
                     }) {
-                        "Begin Greeting"
+                       Text(text ="Begin Greeting" )
                     }
                 }
 
