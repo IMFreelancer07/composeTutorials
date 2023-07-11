@@ -55,63 +55,73 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class)
-    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-
-            val snackbarHostState = remember { SnackbarHostState() }
-            var textFiledState by remember {
-                mutableStateOf("")
-            }
-            val scope = rememberCoroutineScope()
-
-            Scaffold (
-                modifier = Modifier.fillMaxSize(),
-                snackbarHost = { SnackbarHost(snackbarHostState) }
-//                scaffoldState = scaffoldState
-            ) {
-                Column (horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center,
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = 30.dp)
-                )
-                {
-                    TextField(
-                            value = textFiledState,
-                            label = {
-                            Text("Enter your name!")
-                        },
-                            onValueChange = {
-                            textFiledState = it
-                        },
-                            singleLine = true,
-                            modifier = Modifier.fillMaxWidth()
-                    )
-                    
-                    Spacer(modifier = Modifier.height(16.dp))
-                    
-                    Button(onClick = {
-
-                        scope.launch {
-                            snackbarHostState.showSnackbar("Hello $textFiledState", duration = SnackbarDuration.Long)
-                        }
-                    }) {
-                       Text(text ="Begin Greeting" )
-                    }
-                }
-
-            }
-
 
     }
 }
 }
 
 /** Textfields, Buttons, Snackbars **/
+/**
+ *
+ * @OptIn(ExperimentalMaterial3Api::class)
+ *     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+ *     override fun onCreate(savedInstanceState: Bundle?) {
+ *         super.onCreate(savedInstanceState)
+ *
+ * setContent {
+ *
+ *             val snackbarHostState = remember { SnackbarHostState() }
+ *             var textFiledState by remember {
+ *                 mutableStateOf("")
+ *             }
+ *             val scope = rememberCoroutineScope()
+ *
+ *             Scaffold (
+ *                 modifier = Modifier.fillMaxSize(),
+ *                 snackbarHost = { SnackbarHost(snackbarHostState) }
+ * //                scaffoldState = scaffoldState
+ *             ) {
+ *                 Column (horizontalAlignment = Alignment.CenterHorizontally,
+ *                     verticalArrangement = Arrangement.Center,
+ *                     modifier = Modifier
+ *                         .fillMaxSize()
+ *                         .padding(horizontal = 30.dp)
+ *                 )
+ *                 {
+ *                     TextField(
+ *                             value = textFiledState,
+ *                             label = {
+ *                             Text("Enter your name!")
+ *                         },
+ *                             onValueChange = {
+ *                             textFiledState = it
+ *                         },
+ *                             singleLine = true,
+ *                             modifier = Modifier.fillMaxWidth()
+ *                     )
+ *
+ *                     Spacer(modifier = Modifier.height(16.dp))
+ *
+ *                     Button(onClick = {
+ *
+ *                         scope.launch {
+ *                             snackbarHostState.showSnackbar("Hello $textFiledState", duration = SnackbarDuration.Long)
+ *                         }
+ *                     }) {
+ *                        Text(text ="Begin Greeting" )
+ *                     }
+ *                 }
+ *
+ *             }
+ *
+ *
+ *     }
+ */
 
 
 /** Textfields, Buttons, Snackbars **/
