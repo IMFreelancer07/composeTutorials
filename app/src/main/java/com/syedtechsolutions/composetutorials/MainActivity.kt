@@ -64,25 +64,35 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            LazyColumn {
-                itemsIndexed(
-                    listOf("This", "is", "Jetpack", "Compose")
-                ) { index, item ->
-
-                    Text(
-                        text = "This is item No. $item",
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = 24.dp)
-                    )
-                }
-            }
     }
 }
 }
+
+
+
+/** lists LazyColumn (RecyclerView)! **/
+/**
+ *
+ *          setContent{
+ *             LazyColumn {
+ *                 itemsIndexed(
+ *                     listOf("This", "is", "Jetpack", "Compose")
+ *                 ) { index, item ->
+ *
+ *                     Text(
+ *                         text = "This is item No. $item",
+ *                         fontSize = 20.sp,
+ *                         fontWeight = FontWeight.Bold,
+ *                         textAlign = TextAlign.Center,
+ *                         modifier = Modifier
+ *                             .fillMaxWidth()
+ *                             .padding(vertical = 24.dp)
+ *                     )
+ *                 }
+ *             }
+ *            }
+ */
+/** lists LazyColumn (RecyclerView)! **/
 
 /** Textfields, Buttons, Snackbars **/
 /**
