@@ -49,8 +49,12 @@ import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
@@ -60,7 +64,22 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
+            LazyColumn {
+                itemsIndexed(
+                    listOf("This", "is", "Jetpack", "Compose")
+                ) { index, item ->
 
+                    Text(
+                        text = "This is item No. $item",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 24.dp)
+                    )
+                }
+            }
     }
 }
 }
